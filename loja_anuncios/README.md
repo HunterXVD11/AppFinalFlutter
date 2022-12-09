@@ -1,6 +1,6 @@
 # loja_anuncios
 
-A new Flutter project.
+A Flutter project that simulates a virtual shop.
 
 ## Getting Started
 
