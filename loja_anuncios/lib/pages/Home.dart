@@ -10,6 +10,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+import '../CRUD/crud_user.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -17,7 +19,25 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+  class _HomeState extends State<Home> {
+    List _listaUsers = [];
+    TextEditingController _controllerTarefa = TextEditingController();
+
+    Future addUser() async {
+      final user = User(
+        name: _controllerTarefa.text,
+        email: _controllerTarefa.text,
+        password: _controllerTarefa.text,
+      );
+
+      await UsersDatabase.instance.create(user);
+
+      setState(() {
+        _listaUsers.add(user);
+      });
+      _controllerTarefa.text = "";
+    }
+
   @override
   Widget build(BuildContext context) {
     return Container();
