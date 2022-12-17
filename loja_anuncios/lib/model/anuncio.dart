@@ -1,5 +1,4 @@
 import 'dart:ffi';
-import 'dart:html';
 
 final String tableAnuncios = 'anuncios';
 
@@ -24,7 +23,7 @@ class Anuncio {
   final Float price;
   final String telephone;
   final String description;
-  final Blob photo;
+  //final Blob photo;
 
   const Anuncio({
     this.id,
@@ -34,7 +33,7 @@ class Anuncio {
     required this.price,
     required this.telephone,
     required this.description,
-    required this.photo,
+    //required this.photo,
   });
   Anuncio copy({
     int? id,
@@ -44,7 +43,7 @@ class Anuncio {
     Float? price,
     String? telephone,
     String? description,
-    Blob? photo,
+    //Blob? photo,
   }) =>
       Anuncio(
           id: id ?? this.id,
@@ -54,7 +53,7 @@ class Anuncio {
           price: price ?? this.price,
           telephone: telephone ?? this.telephone,
           description: description ?? this.description,
-          photo: photo ?? this.photo,
+          //photo: photo ?? this.photo,
       );
 
   static Anuncio fromJson(Map<String, Object?> json) => Anuncio(
@@ -65,7 +64,7 @@ class Anuncio {
     price: json[AnunciosFields.price] as Float,
     telephone: json[AnunciosFields.telephone] as String,
     description: json[AnunciosFields.description] as String,
-    photo: json[AnunciosFields.photo] as Blob,
+    //photo: json[AnunciosFields.photo] as Blob,
   );
 
 
@@ -77,6 +76,6 @@ class Anuncio {
     AnunciosFields.price: price,
     AnunciosFields.telephone: telephone,
     AnunciosFields.description: description,
-    AnunciosFields.photo: photo,
+    //AnunciosFields.photo: photo,
   };
 }
