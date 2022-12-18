@@ -18,7 +18,7 @@ class AnunciosDatabase {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('users.db');
+    _database = await _initDB('anuncios.db');
     return _database!;
   }
 
@@ -31,62 +31,69 @@ class AnunciosDatabase {
 
   Future _createDB(Database db, int version) async {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final charType = 'VARCHAR NOT NULL';
+    final stateTypeChar = 'VARCHAR(2) NOT NULL';
+    final categoryTypeChar = 'VARCHAR(2) NOT NULL';
+    final textType = 'TEXT NOT NULL';
+    final doubleType = 'REAL NOT NULL';
+    final telephoneTypeChar = 'VARCHAR(20) NOT NULL';
+
 
     await db.execute(
-        ''' CREATE TABLE $tableUsers (
-          ${UsersFields.id} $idType,
-          ${UsersFields.name} $charType,
-          ${UsersFields.email} $charType,
-          ${UsersFields.password} $charType
-          
+        ''' CREATE TABLE $tableAnuncios (
+          ${AnunciosFields.id} $idType,
+          ${AnunciosFields.state} $stateTypeChar,
+          ${AnunciosFields.category} $categoryTypeChar,
+          ${AnunciosFields.title} $textType,
+          ${AnunciosFields.price} $doubleType,
+          ${AnunciosFields.telephone} $telephoneTypeChar,
+          ${AnunciosFields.description} $textType    
         )''');
   }
-  Future<User> create(User user) async {
+  Future<Anuncio> create(Anuncio anuncio) async {
     final db = await instance.database;
-    final id = await db.insert(tableUsers, user.toJson());
+    final id = await db.insert(tableAnuncios, anuncio.toJson());
 
-    return user.copy(id:id);
+    return anuncio.copy(id:id);
   }
 
-  Future<User> readNote(int id) async {
+  Future<Anuncio> readAnuncio(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
-        tableUsers,
-        columns: UsersFields.values,
-        where: '${UsersFields.id} = ?',
+        tableAnuncios,
+        columns: AnunciosFields.values,
+        where: '${AnunciosFields.id} = ?',
         whereArgs: [id]);
     if (maps.isNotEmpty){
-      return User.fromJson(maps.first);
+      return Anuncio.fromJson(maps.first);
     }else{
       throw Exception('ID $id não encontrado');
     }
   }
-  Future<List<User>> readAllNotes() async{
+  Future<List<Anuncio>> readAllAnuncios() async{
     final db = await instance.database;
-    final result = await db.query(tableUsers);
+    final result = await db.query(tableAnuncios);
 
-    return result.map((json) => User.fromJson(json)).toList();
+    return result.map((json) => Anuncio.fromJson(json)).toList();
   }
 
-  Future<int> updateNotes(User user) async{
+  Future<int> updateAnuncio(Anuncio anuncio) async{
     final db = await instance.database;
 
     return db.update(
-        tableUsers,
-        user.toJson(),
-        where: '${UsersFields.id} = ?',
-        whereArgs: [user.id]
+        tableAnuncios,
+        anuncio.toJson(),
+        where: '${AnunciosFields.id} = ?',
+        whereArgs: [anuncio.id]
     );
   }
 
-  Future<int> deleteNotes(int id) async{
+  Future<int> deleteAnuncio(int id) async{
     final db = await instance.database;
 
     return await db.delete(
-        tableUsers,
-        where: '${UsersFields.id} = ?',
+        tableAnuncios,
+        where: '${AnunciosFields.id} = ?',
         whereArgs: [id]
     );
   }
