@@ -19,12 +19,17 @@ class Main extends StatelessWidget {
 
   int id;
 
-  PopupMenuItem _buildPopupMenuItem(String title, Icon icon) {
+  PopupMenuItem _buildPopupMenuItem(String title, Icon icon,BuildContext context) {
     return PopupMenuItem(
       child: ListTile(
         leading: icon,
-        title: Text(title),
+        title: TextButton(onPressed: (){Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Home(),
+            ));}, child: Text(title)),
       ),
+
     );
   }
 
@@ -38,8 +43,8 @@ class Main extends StatelessWidget {
         actions: [
           PopupMenuButton(
               itemBuilder: (ctx) => [
-                    _buildPopupMenuItem("Meus anuncios", Icon(Icons.inbox)),
-                    _buildPopupMenuItem("Criar anuncio", Icon(Icons.add))
+                    _buildPopupMenuItem("Meus anuncios", Icon(Icons.inbox),context),
+                    _buildPopupMenuItem("Criar anuncio", Icon(Icons.add),context)
                   ])
         ],
       ),
@@ -51,11 +56,14 @@ class Main extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.star,color: Colors.deepOrange,),
+                  Icon(
+                    Icons.star,
+                    color: Colors.deepOrange,
+                  ),
                   Padding(
                     padding: EdgeInsets.only(top: 0),
                     child: Text(
-                      "O Natal chegou com tudo na Perigo".toUpperCase(),
+                      "O Natal chegou com tudo no Perigo".toUpperCase(),
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -75,6 +83,11 @@ class Main extends StatelessWidget {
                 top: BorderSide(width: 1, color: Colors.black26),
               ))),
             ),
+            TextButton(onPressed: (){Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(),
+                ));}, child: Text("Cachorro"))
             // Column(children: [
             //   Row(
             //     mainAxisAlignment: MainAxisAlignment.center,
