@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:loja_anuncios/model/user.dart';
 import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/Home.dart';
+import 'package:loja_anuncios/pages/page_anuncios_main.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -14,8 +15,9 @@ import 'package:path/path.dart';
 import '../CRUD/crud_anuncio.dart';
 
 class TelaCriacaoDeAnuncio extends StatefulWidget {
-  const TelaCriacaoDeAnuncio({Key? key}) : super(key: key);
+  TelaCriacaoDeAnuncio({Key? key, required this.id}) : super(key: key);
 
+  int id;
   @override
   State<TelaCriacaoDeAnuncio> createState() => _TelaCriacaoDeAnuncioState();
 }
@@ -23,9 +25,12 @@ class TelaCriacaoDeAnuncio extends StatefulWidget {
 class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
   late List<Anuncio> anuncios = [];
   List _listaAnuncios = [];
-  TextEditingController _controllerName = TextEditingController();
-  TextEditingController _controllerEmail = TextEditingController();
-  TextEditingController _controllerPassword = TextEditingController();
+  TextEditingController _controllerState = TextEditingController();
+  TextEditingController _controllerCategory = TextEditingController();
+  TextEditingController _controllerTitle = TextEditingController();
+  TextEditingController _controllerPrice= TextEditingController();
+  TextEditingController _controllerTelephone = TextEditingController();
+  TextEditingController _controllerDescription = TextEditingController();
 
   @override
   void initState() {
@@ -39,13 +44,13 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
 
   Future addAnuncio() async {
     final anuncio = Anuncio(
-      state: _controllerName.text,
-      category: _controllerEmail.text,
-      title: _controllerPassword.text,
-      price: 10,
-      telephone: '10',
-      description: 'bla',
-      skUser: 0,
+      state: _controllerState.text,
+      category: _controllerCategory.text,
+      title: _controllerTitle.text,
+      price: double.parse(_controllerPrice.text),
+      telephone: _controllerTelephone.text,
+      description: _controllerDescription.text,
+      skUser: widget.id,
     );
 
     await AnunciosDatabase.instance.create(anuncio);
@@ -53,9 +58,12 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
     setState(() {
       _listaAnuncios.add(anuncio);
     });
-    _controllerName.text = "";
-    _controllerEmail.text = "";
-    _controllerPassword.text = "";
+    _controllerState.text = "";
+    _controllerCategory.text = "";
+    _controllerTitle.text = "";
+    _controllerPrice.text = "";
+    _controllerTelephone.text = "";
+    _controllerDescription.text = "";
   }
 
   @override
@@ -72,7 +80,7 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
             Padding(
               padding: EdgeInsets.only(top: 50),
               child: Text(
-                "CRIAR CONTA",
+                "NOVO ANÚNCIO",
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -84,11 +92,11 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
               padding: EdgeInsets.only(bottom: 20, top: 50, left: 20, right: 20),
               child: TextFormField(
                 onChanged: (text) {},
-                controller: _controllerName,
+                controller: _controllerState,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.person),
-                    labelText: 'Informe o nome de usuário'),
+                    prefixIcon: Icon(Icons.loop),
+                    labelText: 'Informe o estado do produto'),
               ),
             ),
             Padding(
@@ -96,11 +104,11 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
               EdgeInsets.only(bottom: 20, left: 20, right: 20),
               child: TextFormField(
                 onChanged: (text) {},
-                controller: _controllerEmail,
+                controller: _controllerCategory,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.mail),
-                  labelText: 'Informe o email',
+                  prefixIcon: Icon(Icons.category),
+                  labelText: 'Informe a categoria do produto',
                 ),
               ),
             ),
@@ -108,11 +116,50 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
               padding: EdgeInsets.only(bottom: 20, left: 20, right: 20),
               child: TextFormField(
                 onChanged: (text) {},
-                controller: _controllerPassword,
+                controller: _controllerTitle,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.key),
-                    labelText: 'Informe a senha'),
+                    prefixIcon: Icon(Icons.title),
+                    labelText: 'Informe o titulo do anuncio'),
+              ),
+            ),
+            Padding(
+              padding:
+              EdgeInsets.only(bottom: 20, left: 20, right: 20),
+              child: TextFormField(
+                onChanged: (text) {},
+                controller: _controllerCategory,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.currency_bitcoin),
+                  labelText: 'Informe o preço do produto',
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+              EdgeInsets.only(bottom: 20, left: 20, right: 20),
+              child: TextFormField(
+                onChanged: (text) {},
+                controller: _controllerCategory,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.call),
+                  labelText: 'Informe o telefone de contato',
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+              EdgeInsets.only(bottom: 20, left: 20, right: 20),
+              child: TextFormField(
+                onChanged: (text) {},
+                controller: _controllerCategory,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.description),
+                  labelText: 'Informe uma descrição para o anuncio',
+                ),
               ),
             ),
             Padding(
@@ -127,15 +174,14 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
                     backgroundColor: Colors.deepOrange),
                 onPressed: () {
                   addAnuncio();
-                  print(_controllerEmail.text);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Home(),
+                        builder: (context) => Main(id: widget.id),
                       ));
                 },
                 child: Text(
-                  "CONTINUAR",
+                  "CRIAR",
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.white),
                 ),
@@ -149,38 +195,6 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
                         top: BorderSide(width: 1, color: Colors.black26),
                       ))),
             ),
-            Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Já possui cadastro?"),
-                  TextButton(
-                    onPressed: () {
-                      addAnuncio();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ));
-                    },
-                    child: Text("Entrar"),
-
-                  ),
-                ],
-              ),
-              // Text("ou"),
-              // Padding(padding: const EdgeInsets.symmetric(horizontal: 107),
-              //   child: TextButton(
-              //     onPressed: () {
-              //       Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //             builder: (context) => Cadastro(),
-              //           ));
-              //     },
-              //     child: Text("Entrar como Convidado",style: TextStyle(color: Colors.black54),),
-              //   ),)
-            ],)
           ],
         ),
       ),

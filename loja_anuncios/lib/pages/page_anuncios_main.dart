@@ -6,6 +6,7 @@ import 'package:loja_anuncios/model/user.dart';
 import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/Home.dart';
 import 'package:loja_anuncios/pages/cadastro_user.dart';
+import 'package:loja_anuncios/pages/create_anuncio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -26,7 +27,7 @@ class Main extends StatelessWidget {
         title: TextButton(onPressed: (){Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Home(),
+              builder: (context) => TelaCriacaoDeAnuncio(id: id),
             ));}, child: Text(title)),
       ),
 
