@@ -4,6 +4,7 @@ import "dart:convert";
 import 'package:flutter/material.dart';
 import 'package:loja_anuncios/model/user.dart';
 import 'package:loja_anuncios/model/anuncio.dart';
+import 'package:loja_anuncios/pages/cadastro_user.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -86,6 +87,9 @@ class _HomeState extends State<Home> {
                       backgroundColor: Colors.black),
                   onPressed: () {
                     print(_controllerEmail.text);
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => Cadastro(),
+                    ));
                   },
                   child: Text(
                     "CONFIRMAR",
