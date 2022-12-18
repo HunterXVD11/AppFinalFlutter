@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:loja_anuncios/model/user.dart';
 import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/cadastro_user.dart';
+import 'package:loja_anuncios/pages/page_anuncios_main.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -116,7 +117,7 @@ class _HomeState extends State<Home> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Home(),
+                            builder: (context) => Main(id: _listaUsers[i].id),
                           ));
                     }
                     else{

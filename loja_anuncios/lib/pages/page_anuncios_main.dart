@@ -13,16 +13,14 @@ import 'package:path/path.dart';
 
 import '../CRUD/crud_user.dart';
 
-class Main extends StatefulWidget {
-  const Main({Key? key}) : super(key: key);
+class Main extends StatelessWidget {
+  Main({Key? key,required this.id}) : super(key: key);
 
-  @override
-  State<Main> createState() => _MainState();
-}
+  int id;
 
-class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return Container();
   }
 }
+
