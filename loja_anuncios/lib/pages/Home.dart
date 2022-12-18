@@ -80,22 +80,29 @@ class _HomeState extends State<Home> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 20, left: 75, right: 75),
-              child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      minimumSize: const Size(0, 50),
-                      backgroundColor: Colors.black),
-                  onPressed: () {
-                    print(_controllerEmail.text);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => Cadastro(),
-                    ));
-                  },
-                  child: Text(
-                    "CONFIRMAR",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  )),
+              padding: EdgeInsets.only(bottom: 20, left: 90, right: 90),
+              child: OutlinedButton.icon(
+                icon: Icon(
+                  Icons.login,
+                  color: Colors.white,
+                ),
+                style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(0, 50),
+                    backgroundColor: Colors.black),
+                onPressed: () {
+                  print(_controllerEmail.text);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Cadastro(),
+                      ));
+                },
+                label: Text(
+                  "ENTRAR",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
             )
           ],
         ),
