@@ -23,7 +23,8 @@ class Main extends StatelessWidget {
     return PopupMenuItem(
       child: ListTile(
         leading: icon,
-        title: Text(title),),
+        title: Text(title),
+      ),
     );
   }
 
@@ -37,8 +38,8 @@ class Main extends StatelessWidget {
         actions: [
           PopupMenuButton(
               itemBuilder: (ctx) => [
-                    _buildPopupMenuItem("Meus anuncios",Icon(Icons.inbox)),
-                    _buildPopupMenuItem("Criar anuncio",Icon(Icons.add))
+                    _buildPopupMenuItem("Meus anuncios", Icon(Icons.inbox)),
+                    _buildPopupMenuItem("Criar anuncio", Icon(Icons.add))
                   ])
         ],
       ),
@@ -46,16 +47,26 @@ class Main extends StatelessWidget {
         child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 50),
-              child: Text(
-                "O Natal chegou com tudo na Perigo",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepOrange),
-                textAlign: TextAlign.center,
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(Icons.star,color: Colors.deepOrange,),
+                  Padding(
+                    padding: EdgeInsets.only(top: 0),
+                    child: Text(
+                      "O Natal chegou com tudo na Perigo".toUpperCase(),
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Container(
