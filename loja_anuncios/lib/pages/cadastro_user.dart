@@ -27,6 +27,16 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerPassword = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    refreshNotes();
+  }
+
+  Future refreshNotes() async {
+    _listaUsers = await UsersDatabase.instance.readAllNotes();
+  }
+
   Future addUser() async {
     final user = User(
       name: _controllerName.text,
@@ -111,11 +121,12 @@ class _CadastroState extends State<Cadastro> {
                     minimumSize: const Size(0, 50),
                     backgroundColor: Colors.deepOrange),
                 onPressed: () {
+                  addUser();
                   print(_controllerEmail.text);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Cadastro(),
+                        builder: (context) => Home(),
                       ));
                 },
                 child: Text(
@@ -141,6 +152,7 @@ class _CadastroState extends State<Cadastro> {
                     Text("Já possui cadastro?"),
                     TextButton(
                       onPressed: () {
+                        addUser();
                         Navigator.push(
                             context,
                             MaterialPageRoute(

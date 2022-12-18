@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 final String tableAnuncios = 'anuncios';
 
@@ -20,7 +19,7 @@ class Anuncio {
   final String state;
   final String category;
   final String title;
-  final Float price;
+  final double price;
   final String telephone;
   final String description;
   //final Blob photo;
@@ -40,7 +39,7 @@ class Anuncio {
     String? state,
     String? category,
     String? title,
-    Float? price,
+    double? price,
     String? telephone,
     String? description,
     //Blob? photo,
@@ -61,7 +60,7 @@ class Anuncio {
     state: json[AnunciosFields.state] as String,
     category: json[AnunciosFields.category] as String,
     title: json[AnunciosFields.title] as String,
-    price: json[AnunciosFields.price] as Float,
+    price: json[AnunciosFields.price] as double,
     telephone: json[AnunciosFields.telephone] as String,
     description: json[AnunciosFields.description] as String,
     //photo: json[AnunciosFields.photo] as Blob,

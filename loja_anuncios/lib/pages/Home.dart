@@ -27,6 +27,16 @@ class _HomeState extends State<Home> {
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerPassword = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    refreshNotes();
+  }
+
+  Future refreshNotes() async {
+    _listaUsers = await UsersDatabase.instance.readAllNotes();
+  }
+
   Future addUser() async {
     final user = User(
       name: _controllerName.text,
@@ -100,11 +110,16 @@ class _HomeState extends State<Home> {
                     minimumSize: const Size(0, 50),
                     backgroundColor: Colors.deepOrange),
                 onPressed: () {
+                  for (var i = 0; i < _listaUsers.length; i++) {
+                    if (_listaUsers[i].email == _controllerEmail.text && _listaUsers[i].password == _controllerPassword.text){
+                      print("Achou");
+                    }
+                  }
                   print(_controllerEmail.text);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Cadastro(),
+                        builder: (context) => Home(),
                       ));
                 },
                 label: Text(

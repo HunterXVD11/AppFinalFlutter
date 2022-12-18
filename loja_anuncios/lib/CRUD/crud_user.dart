@@ -35,10 +35,10 @@ class UsersDatabase {
 
     await db.execute(
         ''' CREATE TABLE $tableUsers (
-          ${UsersFields.id}$idType,
-          ${UsersFields.name}$charType,
-          ${UsersFields.email}$charType,
-          ${UsersFields.password}$charType,
+          ${UsersFields.id} $idType,
+          ${UsersFields.name} $charType,
+          ${UsersFields.email} $charType,
+          ${UsersFields.password} $charType
           
         )''');
   }
