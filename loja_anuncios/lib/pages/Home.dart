@@ -114,14 +114,35 @@ class _HomeState extends State<Home> {
                   for (var i = 0; i < _listaUsers.length; i++) {
                     if (_listaUsers[i].email == _controllerEmail.text && _listaUsers[i].password == _controllerPassword.text){
                       print("Achou");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ));
+                    }
+                    else{
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text("Erro"),
+                            content: const Text(
+                                "Email e/ou senha inválida"),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Ok"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     }
                   }
                   print(_controllerEmail.text);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                      ));
+
                 },
                 label: Text(
                   "ENTRAR",
