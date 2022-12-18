@@ -56,8 +56,29 @@ class _CadastroState extends State<Cadastro> {
         child: ListView(
           children: [
             Padding(
+              padding: EdgeInsets.only(top: 50, left: 100, right: 100),
+              child: Text(
+                "CRIAR CONTA",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepOrange),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 20, top: 50, left: 20, right: 20),
+              child: TextFormField(
+                onChanged: (text) {},
+                controller: _controllerName,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.person),
+                    labelText: 'Informe o nome de usuário'),
+              ),
+            ),
+            Padding(
               padding:
-              EdgeInsets.only(bottom: 20, top: 50, left: 20, right: 20),
+              EdgeInsets.only(bottom: 20, left: 20, right: 20),
               child: TextFormField(
                 onChanged: (text) {},
                 controller: _controllerEmail,
@@ -80,23 +101,71 @@ class _CadastroState extends State<Cadastro> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 20, left: 75, right: 75),
+              padding: EdgeInsets.only(bottom: 20, left: 90, right: 90),
               child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      minimumSize: const Size(0, 50),
-                      backgroundColor: Colors.black),
-                  onPressed: () {
-                    print(_controllerEmail.text);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => Home(),
-                    ));
-                  },
-                  child: Text(
-                    "CONFIRMAR",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  )),
-            )
+                // icon: Icon(
+                //   Icons.login,
+                //   color: Colors.white,
+                // ),
+                style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(0, 50),
+                    backgroundColor: Colors.deepOrange),
+                onPressed: () {
+                  print(_controllerEmail.text);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Cadastro(),
+                      ));
+                },
+                child: Text(
+                  "CONTINUAR",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(width: 1, color: Colors.black26),
+                      ))),
+            ),
+            Column(children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 107),
+                child: Row(
+                  children: [
+                    Text("Já possui cadastro?"),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home(),
+                            ));
+                      },
+                      child: Text("Entrar"),
+
+                    ),
+                  ],
+                ),
+              ),
+              // Text("ou"),
+              // Padding(padding: const EdgeInsets.symmetric(horizontal: 107),
+              //   child: TextButton(
+              //     onPressed: () {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (context) => Cadastro(),
+              //           ));
+              //     },
+              //     child: Text("Entrar como Convidado",style: TextStyle(color: Colors.black54),),
+              //   ),)
+            ],)
           ],
         ),
       ),
