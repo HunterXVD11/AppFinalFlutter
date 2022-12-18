@@ -36,6 +36,7 @@ class AnunciosDatabase {
     final textType = 'TEXT NOT NULL';
     final doubleType = 'REAL NOT NULL';
     final telephoneTypeChar = 'VARCHAR(20) NOT NULL';
+    final intType = 'INTEGER NOT NULL';
 
 
     await db.execute(
@@ -46,7 +47,8 @@ class AnunciosDatabase {
           ${AnunciosFields.title} $textType,
           ${AnunciosFields.price} $doubleType,
           ${AnunciosFields.telephone} $telephoneTypeChar,
-          ${AnunciosFields.description} $textType    
+          ${AnunciosFields.description} $textType,
+          ${AnunciosFields.skUser} $intType
         )''');
   }
   Future<Anuncio> create(Anuncio anuncio) async {

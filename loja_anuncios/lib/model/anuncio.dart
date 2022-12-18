@@ -2,7 +2,7 @@
 final String tableAnuncios = 'anuncios';
 
 class AnunciosFields {
-  static final List<String> values = [id,state,category,title,price,telephone,description,photo];
+  static final List<String> values = [id,state,category,title,price,telephone,description];
   static final String id = '_id';
   static final String state = 'state';
   static final String category = 'category';
@@ -10,7 +10,8 @@ class AnunciosFields {
   static final String price = 'price';
   static final String telephone = 'telephone';
   static final String description = 'description';
-  static final String photo= 'photo';
+  // static final String photo= 'photo';
+  static final String skUser = 'skUser';
 
 }
 
@@ -23,6 +24,7 @@ class Anuncio {
   final String telephone;
   final String description;
   //final Blob photo;
+  final int? skUser;
 
   const Anuncio({
     this.id,
@@ -33,6 +35,7 @@ class Anuncio {
     required this.telephone,
     required this.description,
     //required this.photo,
+    required this.skUser,
   });
   Anuncio copy({
     int? id,
@@ -43,6 +46,7 @@ class Anuncio {
     String? telephone,
     String? description,
     //Blob? photo,
+    int? skUser,
   }) =>
       Anuncio(
           id: id ?? this.id,
@@ -53,6 +57,7 @@ class Anuncio {
           telephone: telephone ?? this.telephone,
           description: description ?? this.description,
           //photo: photo ?? this.photo,
+        skUser: skUser ?? this.skUser
       );
 
   static Anuncio fromJson(Map<String, Object?> json) => Anuncio(
@@ -64,6 +69,7 @@ class Anuncio {
     telephone: json[AnunciosFields.telephone] as String,
     description: json[AnunciosFields.description] as String,
     //photo: json[AnunciosFields.photo] as Blob,
+    skUser: json[AnunciosFields.skUser] as int?,
   );
 
 
