@@ -66,13 +66,14 @@ class _CadastroState extends State<Cadastro> {
         child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 50, left: 100, right: 100),
+              padding: EdgeInsets.only(top: 50),
               child: Text(
                 "CRIAR CONTA",
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Colors.deepOrange),
+                textAlign: TextAlign.center,
               ),
             ),
             Padding(
@@ -145,25 +146,23 @@ class _CadastroState extends State<Cadastro> {
                       ))),
             ),
             Column(children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 107),
-                child: Row(
-                  children: [
-                    Text("Já possui cadastro?"),
-                    TextButton(
-                      onPressed: () {
-                        addUser();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Home(),
-                            ));
-                      },
-                      child: Text("Entrar"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Já possui cadastro?"),
+                  TextButton(
+                    onPressed: () {
+                      addUser();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Home(),
+                          ));
+                    },
+                    child: Text("Entrar"),
 
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               // Text("ou"),
               // Padding(padding: const EdgeInsets.symmetric(horizontal: 107),
