@@ -56,6 +56,16 @@ class _HomeState extends State<Home> {
         child: ListView(
           children: [
             Padding(
+              padding: EdgeInsets.only(top: 50, left: 110, right: 110),
+              child: Text(
+                "FAZER LOGIN",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepOrange),
+              ),
+            ),
+            Padding(
               padding:
                   EdgeInsets.only(bottom: 20, top: 50, left: 20, right: 20),
               child: TextFormField(
@@ -88,7 +98,7 @@ class _HomeState extends State<Home> {
                 ),
                 style: OutlinedButton.styleFrom(
                     minimumSize: const Size(0, 50),
-                    backgroundColor: Colors.black),
+                    backgroundColor: Colors.deepOrange),
                 onPressed: () {
                   print(_controllerEmail.text);
                   Navigator.push(
@@ -103,7 +113,48 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                top: BorderSide(width: 1, color: Colors.black26),
+              ))),
+            ),
+            Column(children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 107),
+                child: Row(
+                  children: [
+                    Text("Novo no Perigo?"),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Cadastro(),
+                            ));
+                      },
+                      child: Text("Cadastre-se"),
+
+                    ),
+                  ],
+                ),
+              ),
+              Text("ou"),
+              Padding(padding: const EdgeInsets.symmetric(horizontal: 107),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Cadastro(),
+                        ));
+                  },
+                  child: Text("Entrar como Convidado",style: TextStyle(color: Colors.black54),),
+                ),)
+            ],)
           ],
         ),
       ),
