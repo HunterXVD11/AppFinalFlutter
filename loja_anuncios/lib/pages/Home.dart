@@ -66,13 +66,14 @@ class _HomeState extends State<Home> {
         child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 50, left: 110, right: 110),
+              padding: EdgeInsets.only(top: 50),
               child: Text(
                 "FAZER LOGIN",
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Colors.deepOrange),
+                textAlign: TextAlign.center,
               ),
             ),
             Padding(
@@ -138,24 +139,22 @@ class _HomeState extends State<Home> {
               ))),
             ),
             Column(children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 107),
-                child: Row(
-                  children: [
-                    Text("Novo no Perigo?"),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Cadastro(),
-                            ));
-                      },
-                      child: Text("Cadastre-se"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Novo no Perigo?"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Cadastro(),
+                          ));
+                    },
+                    child: Text("Cadastre-se"),
 
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Text("ou"),
               Padding(padding: const EdgeInsets.symmetric(horizontal: 107),
