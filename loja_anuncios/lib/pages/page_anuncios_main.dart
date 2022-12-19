@@ -124,46 +124,153 @@ class _MainState extends State<Main> {
               ))),
             ),
             Flexible(
-              child: ListView.builder(
+                child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 260,
+                        childAspectRatio: 0.78,
+                        // mainAxisSpacing: 10
+                    ),
                   itemCount: _listaAnuncios.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: new EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 10),
-                      padding: const EdgeInsets.only(left: 30, top: 20),
-                      decoration: const BoxDecoration(
-                        // border: Border(
-                        //   top: BorderSide(width: 1, color: Colors.black26),
-                        //   bottom: BorderSide(width: 1, color: Colors.black26),
-                        //   right: BorderSide(width: 1, color: Colors.black26),
-                        //   left: BorderSide(width: 1, color: Colors.black26),
-                        // ),
-                        color: Colors.white
-                      ),
-                      child: Row(children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20),
-                          child: Image(
-                            image: AssetImage('images/products.png'),
-                            width: 100,
-                            height: 100,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: new EdgeInsets.symmetric(
+                            horizontal: 7.5, vertical: 7.5),
+                        padding: const EdgeInsets.only(top: 20),
+                        decoration: const BoxDecoration(color: Colors.white),
+                        child: Column(children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: Image(
+                              image: AssetImage('images/products.png'),
+                              width: 100,
+                              height: 100,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${_listaAnuncios[index].title}"),
-                              Text("${_listaAnuncios[index].description}"),
-                              Text("${_listaAnuncios[index].price}"),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0,top: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${_listaAnuncios[index].title}",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 0, top:10),
+                                  child: Text(
+                                    "RS ${_listaAnuncios[index].price}",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.deepOrange,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Text(
+                                  "À vista no PIX}",
+                                  style: TextStyle(
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black54
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(left: 0, top:10),
+                                  child: OutlinedButton.icon(
+                                    icon: Icon(
+                                      Icons.shopping_cart,
+                                      color: Colors.white,
+                                    ),
+                                    style: OutlinedButton.styleFrom(
+                                        minimumSize: const Size(150, 30),
+                                        backgroundColor: Colors.deepOrange),
+                                    onPressed: () {},
+                                    label: Text(
+                                      "COMPRAR",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ]),
-                    );
-                  }),
-            ),
+                        ]),
+                      );
+                    },
+
+                )),
+
+            // Flexible(
+            //   child: ListView.builder(
+            //       itemCount: _listaAnuncios.length,
+            //       itemBuilder: (context, index) {
+            //         return Container(
+            //           margin: new EdgeInsets.symmetric(
+            //               horizontal: 20.0, vertical: 10),
+            //           padding: const EdgeInsets.only(left: 30, top: 20),
+            //           decoration: const BoxDecoration(color: Colors.white),
+            //           child: Row(children: [
+            //             Padding(
+            //               padding: const EdgeInsets.only(right: 20),
+            //               child: Image(
+            //                 image: AssetImage('images/products.png'),
+            //                 width: 100,
+            //                 height: 100,
+            //               ),
+            //             ),
+            //             Padding(
+            //               padding: const EdgeInsets.only(left: 20),
+            //               child: Column(
+            //                 crossAxisAlignment: CrossAxisAlignment.start,
+            //                 children: [
+            //                   Text(
+            //                     "${_listaAnuncios[index].title}",
+            //                     style: TextStyle(
+            //                       fontSize: 16,
+            //                       fontWeight: FontWeight.bold,
+            //                     ),
+            //                   ),
+            //                   Text("${_listaAnuncios[index].description}"),
+            //                   Text(
+            //                     "RS ${_listaAnuncios[index].price}",
+            //                     style: TextStyle(
+            //                         fontSize: 20,
+            //                         color: Colors.deepOrange,
+            //                         fontWeight: FontWeight.bold),
+            //                   ),
+            //                   Container(
+            //                     alignment: Alignment.bottomLeft,
+            //                     padding: EdgeInsets.only(left: 50, top: 20),
+            //                     child: OutlinedButton.icon(
+            //                       icon: Icon(
+            //                         Icons.shopping_cart,
+            //                         color: Colors.white,
+            //                       ),
+            //                       style: OutlinedButton.styleFrom(
+            //                           minimumSize: const Size(0, 35),
+            //                           backgroundColor: Colors.deepOrange),
+            //                       onPressed: () {},
+            //                       label: Text(
+            //                         "COMPRAR",
+            //                         style: const TextStyle(
+            //                             fontWeight: FontWeight.bold,
+            //                             color: Colors.white,
+            //                             fontSize: 14),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           ]),
+            //         );
+            //       }),
+            // ),
           ],
         ),
       ),
