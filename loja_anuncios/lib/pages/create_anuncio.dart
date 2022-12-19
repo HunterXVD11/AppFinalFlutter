@@ -128,7 +128,7 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
               EdgeInsets.only(bottom: 20, left: 20, right: 20),
               child: TextFormField(
                 onChanged: (text) {},
-                controller: _controllerCategory,
+                controller: _controllerPrice,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.currency_bitcoin),
@@ -141,7 +141,7 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
               EdgeInsets.only(bottom: 20, left: 20, right: 20),
               child: TextFormField(
                 onChanged: (text) {},
-                controller: _controllerCategory,
+                controller: _controllerTelephone,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.call),
@@ -154,7 +154,7 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
               EdgeInsets.only(bottom: 20, left: 20, right: 20),
               child: TextFormField(
                 onChanged: (text) {},
-                controller: _controllerCategory,
+                controller: _controllerDescription,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.description),

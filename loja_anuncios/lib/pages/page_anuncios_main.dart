@@ -2,6 +2,7 @@ import 'dart:io';
 import "dart:async";
 import "dart:convert";
 import 'package:flutter/material.dart';
+import 'package:loja_anuncios/CRUD/crud_anuncio.dart';
 import 'package:loja_anuncios/model/user.dart';
 import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/Home.dart';
@@ -15,28 +16,58 @@ import 'package:path/path.dart';
 
 import '../CRUD/crud_user.dart';
 
-class Main extends StatelessWidget {
+class Main extends StatefulWidget {
   Main({Key? key, required this.id}) : super(key: key);
 
   int id;
 
-  PopupMenuItem _buildPopupMenuItem(String title, Icon icon,BuildContext context) {
+  @override
+  State<Main> createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
+  late List<Anuncio> anuncios = [];
+  List _listaAnuncios = [];
+
+  @override
+  void initState() {
+    super.initState();
+    refreshAnuncios();
+  }
+
+  Future refreshAnuncios() async {
+    _listaAnuncios = await AnunciosDatabase.instance.readAllAnuncios();
+  }
+
+  PopupMenuItem _buildPopupMenuItem(
+      String title, Icon icon, BuildContext context) {
     return PopupMenuItem(
       child: ListTile(
         leading: icon,
-        title: TextButton(onPressed: (){Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => TelaCriacaoDeAnuncio(id: id),
-            ));}, child: Text(title)),
+        title: TextButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
+                  ));
+            },
+            child: Text(title)),
       ),
+    );
+  }
 
+  Widget showAnuncio(BuildContext context, int index) {
+    return Scaffold(
+      body: Text(_listaAnuncios[index].title),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    print(id);
+    print(widget.id);
+    print("items2:$anuncios");
+    print("itemsLista:$_listaAnuncios");
     return Scaffold(
       appBar: AppBar(
         title: Text("Loja do Perigo"),
@@ -44,8 +75,10 @@ class Main extends StatelessWidget {
         actions: [
           PopupMenuButton(
               itemBuilder: (ctx) => [
-                    _buildPopupMenuItem("Meus anuncios", Icon(Icons.inbox),context),
-                    _buildPopupMenuItem("Criar anuncio", Icon(Icons.add),context)
+                    _buildPopupMenuItem(
+                        "Meus anuncios", Icon(Icons.inbox), context),
+                    _buildPopupMenuItem(
+                        "Criar anuncio", Icon(Icons.add), context)
                   ])
         ],
       ),
@@ -84,11 +117,19 @@ class Main extends StatelessWidget {
                 top: BorderSide(width: 1, color: Colors.black26),
               ))),
             ),
-            TextButton(onPressed: (){Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Home(),
-                ));}, child: Text("Cachorro"))
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ));
+                },
+                child: Text("Cachorro")),
+            // ListView.builder(
+            //     itemCount: anuncios.length,
+            //     itemBuilder: showAnuncio),
+
             // Column(children: [
             //   Row(
             //     mainAxisAlignment: MainAxisAlignment.center,
