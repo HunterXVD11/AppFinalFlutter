@@ -85,6 +85,11 @@ class _MainState extends State<Main> {
         ],
       ),
       body: Container(
+        decoration: const BoxDecoration(
+            color: Color.fromRGBO(235, 235, 235, 1),
+            border: Border(
+              top: BorderSide(width: 1, color: Colors.black26),
+            )),
         child: Column(
           children: [
             Padding(
@@ -107,7 +112,6 @@ class _MainState extends State<Main> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -123,20 +127,41 @@ class _MainState extends State<Main> {
               child: ListView.builder(
                   itemCount: _listaAnuncios.length,
                   itemBuilder: (context, index) {
-                    return Row(children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: Image(image: AssetImage('images/products.png'), width: 50, height: 50,),
+                    return Container(
+                      margin: new EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 10),
+                      padding: const EdgeInsets.only(left: 30, top: 20),
+                      decoration: const BoxDecoration(
+                        // border: Border(
+                        //   top: BorderSide(width: 1, color: Colors.black26),
+                        //   bottom: BorderSide(width: 1, color: Colors.black26),
+                        //   right: BorderSide(width: 1, color: Colors.black26),
+                        //   left: BorderSide(width: 1, color: Colors.black26),
+                        // ),
+                        color: Colors.white
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("${_listaAnuncios[index].title}"),
-                          Text("${_listaAnuncios[index].description}"),
-                          Text("${_listaAnuncios[index].price}"),
-                        ],
-                      )
-                    ]);
+                      child: Row(children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Image(
+                            image: AssetImage('images/products.png'),
+                            width: 100,
+                            height: 100,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("${_listaAnuncios[index].title}"),
+                              Text("${_listaAnuncios[index].description}"),
+                              Text("${_listaAnuncios[index].price}"),
+                            ],
+                          ),
+                        ),
+                      ]),
+                    );
                   }),
             ),
           ],
