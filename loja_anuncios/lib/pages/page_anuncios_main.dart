@@ -33,6 +33,7 @@ class _MainState extends State<Main> {
   void initState() {
     super.initState();
     refreshAnuncios();
+    print("_listaAnuncios = $_listaAnuncios");
   }
 
   Future refreshAnuncios() async {
@@ -121,8 +122,12 @@ class _MainState extends State<Main> {
                   itemCount: _listaAnuncios.length,
                   itemBuilder: (context, index) {
                     return Row(children: [
-
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Image(image: AssetImage('images/products.png'), width: 50, height: 50,),
+                      ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("${_listaAnuncios[index].title}"),
                           Text("${_listaAnuncios[index].description}"),
