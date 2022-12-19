@@ -38,6 +38,7 @@ class _MainState extends State<Main> {
 
   Future refreshAnuncios() async {
     _listaAnuncios = await AnunciosDatabase.instance.readAllAnuncios();
+    setState(() {});
   }
 
   PopupMenuItem _buildPopupMenuItem(
