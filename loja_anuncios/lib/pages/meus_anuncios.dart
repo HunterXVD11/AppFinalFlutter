@@ -8,6 +8,7 @@ import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/Home.dart';
 import 'package:loja_anuncios/pages/cadastro_user.dart';
 import 'package:loja_anuncios/pages/create_anuncio.dart';
+import 'package:loja_anuncios/pages/page_anuncios_main.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -54,11 +55,20 @@ class _MineState extends State<Mine> {
         leading: icon,
         title: TextButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
-                  ));
+              if (title == "Criar anuncio"){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
+                    ));
+              }
+              else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Main(id: widget.id),
+                    ));
+              }
             },
             child: Text(title)),
       ),
@@ -76,7 +86,7 @@ class _MineState extends State<Mine> {
           PopupMenuButton(
               itemBuilder: (ctx) => [
                 _buildPopupMenuItem(
-                    "Meus anuncios", Icon(Icons.inbox), context),
+                    "Todos anúncios", Icon(Icons.inbox), context),
                 _buildPopupMenuItem(
                     "Criar anuncio", Icon(Icons.add), context)
               ])
