@@ -67,7 +67,7 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.id);
+    print("O id é:${widget.id}");
     print("items2:$anuncios");
     print("itemsLista:$_listaAnuncios");
     return Scaffold(

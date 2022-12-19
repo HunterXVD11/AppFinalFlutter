@@ -112,8 +112,10 @@ class _HomeState extends State<Home> {
                     minimumSize: const Size(0, 50),
                     backgroundColor: Colors.deepOrange),
                 onPressed: () {
+                  bool status = false;
                   for (var i = 0; i < _listaUsers.length; i++) {
                     if (_listaUsers[i].email == _controllerEmail.text && _listaUsers[i].password == _controllerPassword.text){
+                      status = true;
                       print("Achou");
                       Navigator.push(
                           context,
@@ -121,26 +123,26 @@ class _HomeState extends State<Home> {
                             builder: (context) => Main(id: _listaUsers[i].id),
                           ));
                     }
-                    else{
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text("Erro"),
-                            content: const Text(
-                                "Email e/ou senha inválida"),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Ok"),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
+                  }
+                  if (status == false){
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text("Erro"),
+                          content: const Text(
+                              "Email e/ou senha inválida"),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Ok"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                   print(_controllerEmail.text);
 
