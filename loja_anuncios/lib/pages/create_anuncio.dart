@@ -178,11 +178,11 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
                     backgroundColor: Colors.deepOrange),
                 onPressed: () {
                   addAnuncio();
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => Main(id: widget.id),
-                  //     ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Main(id: widget.id),
+                      ));
                   print("Lista = $_listaAnuncios");
                 },
                 child: Text(

@@ -74,7 +74,7 @@ class AnunciosDatabase {
   }
   Future<List<Anuncio>> readAllAnuncios() async{
     final db = await instance.database;
-    final result = await db.query(tableAnuncios);
+    final result = await db.query(tableAnuncios, orderBy: '${AnunciosFields.id} ASC');
 
     return result.map((json) => Anuncio.fromJson(json)).toList();
   }
