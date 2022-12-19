@@ -8,6 +8,7 @@ import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/Home.dart';
 import 'package:loja_anuncios/pages/cadastro_user.dart';
 import 'package:loja_anuncios/pages/create_anuncio.dart';
+import 'package:loja_anuncios/pages/meus_anuncios.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -48,11 +49,20 @@ class _MainState extends State<Main> {
         leading: icon,
         title: TextButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
-                  ));
+              if (title == "Criar anuncio"){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
+                    ));
+              }
+              else {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Mine(id: widget.id),
+                    ));
+              }
             },
             child: Text(title)),
       ),
