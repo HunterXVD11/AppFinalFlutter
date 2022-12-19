@@ -147,19 +147,22 @@ class _MainState extends State<Main> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 0,top: 10),
+                            padding: const EdgeInsets.only(top: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "${_listaAnuncios[index].title}",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
+                                Container(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Text(
+                                    "${_listaAnuncios[index].title}",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 0, top:10),
+                                  padding: EdgeInsets.only(top:5,left: 20),
                                   child: Text(
                                     "RS ${_listaAnuncios[index].price}",
                                     style: TextStyle(
@@ -168,16 +171,20 @@ class _MainState extends State<Main> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                                Text(
-                                  "À vista no PIX}",
-                                  style: TextStyle(
-                                    fontSize: 8,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black54
+                                Container(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Text(
+                                    "À vista no PIX}",
+                                    style: TextStyle(
+                                      fontSize: 8,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black54
+                                    ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 0, top:10),
+                                  alignment: Alignment.bottomCenter,
+                                  padding: EdgeInsets.only(top:0),
                                   child: OutlinedButton.icon(
                                     icon: Icon(
                                       Icons.shopping_cart,
