@@ -83,7 +83,7 @@ class _MainState extends State<Main> {
         ],
       ),
       body: Container(
-        child: ListView(
+        child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -108,7 +108,6 @@ class _MainState extends State<Main> {
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Container(
@@ -117,51 +116,22 @@ class _MainState extends State<Main> {
                 top: BorderSide(width: 1, color: Colors.black26),
               ))),
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                      ));
-                },
-                child: Text("Cachorro")),
-            // ListView.builder(
-            //     itemCount: anuncios.length,
-            //     itemBuilder: showAnuncio),
+            Flexible(
+              child: ListView.builder(
+                  itemCount: _listaAnuncios.length,
+                  itemBuilder: (context, index) {
+                    return Row(children: [
 
-            // Column(children: [
-            //   Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Text("Já possui cadastro?"),
-            //       TextButton(
-            //         onPressed: () {
-            //           addUser();
-            //           Navigator.push(
-            //               context,
-            //               MaterialPageRoute(
-            //                 builder: (context) => Home(),
-            //               ));
-            //         },
-            //         child: Text("Entrar"),
-            //
-            //       ),
-            //     ],
-            //   ),
-            // Text("ou"),
-            // Padding(padding: const EdgeInsets.symmetric(horizontal: 107),
-            //   child: TextButton(
-            //     onPressed: () {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //             builder: (context) => Cadastro(),
-            //           ));
-            //     },
-            //     child: Text("Entrar como Convidado",style: TextStyle(color: Colors.black54),),
-            //   ),)
-            //],)
+                      Column(
+                        children: [
+                          Text("${_listaAnuncios[index].title}"),
+                          Text("${_listaAnuncios[index].description}"),
+                          Text("${_listaAnuncios[index].price}"),
+                        ],
+                      )
+                    ]);
+                  }),
+            ),
           ],
         ),
       ),

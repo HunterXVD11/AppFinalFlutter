@@ -58,6 +58,10 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
     setState(() {
       _listaAnuncios.add(anuncio);
     });
+    for (int i = 0;i < _listaAnuncios.length;i++){
+      print("ListavDD = ${_listaAnuncios[i].title}, ");
+    }
+
     _controllerState.text = "";
     _controllerCategory.text = "";
     _controllerTitle.text = "";
@@ -174,11 +178,12 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
                     backgroundColor: Colors.deepOrange),
                 onPressed: () {
                   addAnuncio();
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Main(id: widget.id),
-                      ));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => Main(id: widget.id),
+                  //     ));
+                  print("Lista = $_listaAnuncios");
                 },
                 child: Text(
                   "CRIAR",

@@ -36,7 +36,7 @@ class AnunciosDatabase {
     final textType = 'TEXT NOT NULL';
     final doubleType = 'REAL NOT NULL';
     final telephoneTypeChar = 'VARCHAR(20) NOT NULL';
-    final intType = 'INTEGER NOT NULL';
+    final intType = 'INTEGER';
 
 
     await db.execute(

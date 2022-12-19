@@ -2,7 +2,7 @@
 final String tableAnuncios = 'anuncios';
 
 class AnunciosFields {
-  static final List<String> values = [id,state,category,title,price,telephone,description];
+  static final List<String> values = [id,state,category,title,price,telephone,description,skUser];
   static final String id = '_id';
   static final String state = 'state';
   static final String category = 'category';
@@ -57,7 +57,7 @@ class Anuncio {
           telephone: telephone ?? this.telephone,
           description: description ?? this.description,
           //photo: photo ?? this.photo,
-        skUser: skUser ?? this.skUser
+          skUser: skUser ?? this.skUser
       );
 
   static Anuncio fromJson(Map<String, Object?> json) => Anuncio(
@@ -82,5 +82,6 @@ class Anuncio {
     AnunciosFields.telephone: telephone,
     AnunciosFields.description: description,
     //AnunciosFields.photo: photo,
+    AnunciosFields.skUser: skUser,
   };
 }
