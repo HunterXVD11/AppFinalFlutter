@@ -27,7 +27,7 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   late List<Anuncio> anuncios = [];
-  List _listaAnuncios = [];
+  late List _listaAnuncios = [];
 
   @override
   void initState() {
@@ -37,6 +37,7 @@ class _MainState extends State<Main> {
 
   Future refreshAnuncios() async {
     _listaAnuncios = await AnunciosDatabase.instance.readAllAnuncios();
+    anuncios = await AnunciosDatabase.instance.readAllAnuncios();
   }
 
   PopupMenuItem _buildPopupMenuItem(
@@ -57,11 +58,11 @@ class _MainState extends State<Main> {
     );
   }
 
-  Widget showAnuncio(BuildContext context, int index) {
-    return Scaffold(
-      body: Text(_listaAnuncios[index].title),
-    );
-  }
+  // Widget showAnuncio(BuildContext context, int index) {
+  //   return Scaffold(
+  //     body: Text(_listaAnuncios[index].title),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +106,7 @@ class _MainState extends State<Main> {
                       textAlign: TextAlign.center,
                     ),
                   ),
+
                 ],
               ),
             ),
