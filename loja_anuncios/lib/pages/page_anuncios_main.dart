@@ -49,11 +49,17 @@ class _MainState extends State<Main> {
         leading: icon,
         title: TextButton(
             onPressed: () {
-              if (title == "Criar anuncio"){
+              if (title == "Criar anuncio") {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
+                    ));
+              }else if (title == "Logout"){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
                     ));
               }
               else {
@@ -90,7 +96,8 @@ class _MainState extends State<Main> {
                     _buildPopupMenuItem(
                         "Meus anuncios", Icon(Icons.inbox), context),
                     _buildPopupMenuItem(
-                        "Criar anuncio", Icon(Icons.add), context)
+                        "Criar anuncio", Icon(Icons.add), context),
+                    _buildPopupMenuItem("Logout", Icon(Icons.logout), context),
                   ])
         ],
       ),
@@ -135,92 +142,90 @@ class _MainState extends State<Main> {
             ),
             Flexible(
                 child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 260,
-                        childAspectRatio: 0.78,
-                        // mainAxisSpacing: 10
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 260,
+                childAspectRatio: 0.78,
+                // mainAxisSpacing: 10
+              ),
+              itemCount: _listaAnuncios.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin:
+                      new EdgeInsets.symmetric(horizontal: 7.5, vertical: 7.5),
+                  padding: const EdgeInsets.only(top: 20),
+                  decoration: const BoxDecoration(color: Colors.white),
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Image(
+                        image: AssetImage('images/products.png'),
+                        width: 100,
+                        height: 100,
+                      ),
                     ),
-                  itemCount: _listaAnuncios.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: new EdgeInsets.symmetric(
-                            horizontal: 7.5, vertical: 7.5),
-                        padding: const EdgeInsets.only(top: 20),
-                        decoration: const BoxDecoration(color: Colors.white),
-                        child: Column(children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Image(
-                              image: AssetImage('images/products.png'),
-                              width: 100,
-                              height: 100,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Text(
+                              "${_listaAnuncios[index].title}",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(left: 20),
-                                  child: Text(
-                                    "${_listaAnuncios[index].title}",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(top:5,left: 20),
-                                  child: Text(
-                                    "RS ${_listaAnuncios[index].price}",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.deepOrange,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(left: 20),
-                                  child: Text(
-                                    "À vista no PIX}",
-                                    style: TextStyle(
-                                      fontSize: 8,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black54
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.bottomCenter,
-                                  padding: EdgeInsets.only(top:0),
-                                  child: OutlinedButton.icon(
-                                    icon: Icon(
-                                      Icons.shopping_cart,
-                                      color: Colors.white,
-                                    ),
-                                    style: OutlinedButton.styleFrom(
-                                        minimumSize: const Size(150, 30),
-                                        backgroundColor: Colors.deepOrange),
-                                    onPressed: () {},
-                                    label: Text(
-                                      "COMPRAR",
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontSize: 14),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          Container(
+                            padding: EdgeInsets.only(top: 5, left: 20),
+                            child: Text(
+                              "RS ${_listaAnuncios[index].price}",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.deepOrange,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
-                        ]),
-                      );
-                    },
-
-                )),
+                          Container(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Text(
+                              "À vista no PIX}",
+                              style: TextStyle(
+                                  fontSize: 8,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black54),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            padding: EdgeInsets.only(top: 0),
+                            child: OutlinedButton.icon(
+                              icon: Icon(
+                                Icons.shopping_cart,
+                                color: Colors.white,
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                  minimumSize: const Size(150, 30),
+                                  backgroundColor: Colors.deepOrange),
+                              onPressed: () {},
+                              label: Text(
+                                "COMPRAR",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 14),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                );
+              },
+            )),
 
             // Flexible(
             //   child: ListView.builder(

@@ -8,7 +8,7 @@ import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/Home.dart';
 import 'package:loja_anuncios/pages/cadastro_user.dart';
 import 'package:loja_anuncios/pages/create_anuncio.dart';
-import 'package:loja_anuncios/pages/page_anuncios_main.dart';
+import 'package:loja_anuncios/pages/meus_anuncios.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,17 +17,15 @@ import 'package:path/path.dart';
 
 import '../CRUD/crud_user.dart';
 
-class Mine extends StatefulWidget {
-  Mine({Key? key, required this.id}) : super(key: key);
-
-  int id;
+class Convidado extends StatefulWidget {
+  const Convidado({Key? key}) : super(key: key);
 
   @override
-  State<Mine> createState() => _MineState();
+  State<Convidado> createState() => _ConvidadoState();
 }
 
-class _MineState extends State<Mine> {
-  late List _meusAnuncios = [];
+class _ConvidadoState extends State<Convidado> {
+  late List<Anuncio> anuncios = [];
   late List _listaAnuncios = [];
 
   @override
@@ -39,12 +37,6 @@ class _MineState extends State<Mine> {
 
   Future refreshAnuncios() async {
     _listaAnuncios = await AnunciosDatabase.instance.readAllAnuncios();
-    for (int i = 0;i < _listaAnuncios.length;i++){
-      print("O id do criador é ${_listaAnuncios[i].skUser}");
-      if (_listaAnuncios[i].skUser != widget.id){
-        _listaAnuncios.removeAt(i);
-      }
-    }
     setState(() {});
   }
 
@@ -55,25 +47,11 @@ class _MineState extends State<Mine> {
         leading: icon,
         title: TextButton(
             onPressed: () {
-              if (title == "Criar anuncio"){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
-                    ));
-              }
-              else if (title == "Logout"){
+              if (title == "Fazer Login"){
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => Home(),
-                    ));
-              }
-              else {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Main(id: widget.id),
                     ));
               }
             },
@@ -81,9 +59,10 @@ class _MineState extends State<Mine> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
-    print("O id é:${widget.id}");
+    print("items2:$anuncios");
     print("itemsLista:$_listaAnuncios");
     return Scaffold(
       appBar: AppBar(
@@ -93,10 +72,7 @@ class _MineState extends State<Mine> {
           PopupMenuButton(
               itemBuilder: (ctx) => [
                 _buildPopupMenuItem(
-                    "Todos anúncios", Icon(Icons.inbox), context),
-                _buildPopupMenuItem(
-                    "Criar anuncio", Icon(Icons.add), context),
-                _buildPopupMenuItem("Logout", Icon(Icons.logout), context),
+                    "Fazer Login", Icon(Icons.person), context),
               ])
         ],
       ),
@@ -120,7 +96,7 @@ class _MineState extends State<Mine> {
                   Padding(
                     padding: EdgeInsets.only(top: 0),
                     child: Text(
-                      "Meus anúncios".toUpperCase(),
+                      "O Natal chegou com tudo no Perigo".toUpperCase(),
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -149,8 +125,8 @@ class _MineState extends State<Mine> {
                   itemCount: _listaAnuncios.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: new EdgeInsets.symmetric(
-                          horizontal: 7.5, vertical: 7.5),
+                      margin:
+                      new EdgeInsets.symmetric(horizontal: 7.5, vertical: 7.5),
                       padding: const EdgeInsets.only(top: 20),
                       decoration: const BoxDecoration(color: Colors.white),
                       child: Column(children: [
@@ -178,7 +154,7 @@ class _MineState extends State<Mine> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.only(top:5,left: 20),
+                                padding: EdgeInsets.only(top: 5, left: 20),
                                 child: Text(
                                   "RS ${_listaAnuncios[index].price}",
                                   style: TextStyle(
@@ -194,20 +170,23 @@ class _MineState extends State<Mine> {
                                   style: TextStyle(
                                       fontSize: 8,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black54
-                                  ),
+                                      color: Colors.black54),
                                 ),
                               ),
                               Container(
                                 alignment: Alignment.bottomCenter,
-                                padding: EdgeInsets.only(top:0),
-                                child: OutlinedButton(
+                                padding: EdgeInsets.only(top: 0),
+                                child: OutlinedButton.icon(
+                                  icon: Icon(
+                                    Icons.shopping_cart,
+                                    color: Colors.white,
+                                  ),
                                   style: OutlinedButton.styleFrom(
                                       minimumSize: const Size(150, 30),
                                       backgroundColor: Colors.deepOrange),
                                   onPressed: () {},
-                                  child: Text(
-                                    "VER MAIS",
+                                  label: Text(
+                                    "COMPRAR",
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
@@ -221,75 +200,7 @@ class _MineState extends State<Mine> {
                       ]),
                     );
                   },
-
                 )),
-
-            // Flexible(
-            //   child: ListView.builder(
-            //       itemCount: _listaAnuncios.length,
-            //       itemBuilder: (context, index) {
-            //         return Container(
-            //           margin: new EdgeInsets.symmetric(
-            //               horizontal: 20.0, vertical: 10),
-            //           padding: const EdgeInsets.only(left: 30, top: 20),
-            //           decoration: const BoxDecoration(color: Colors.white),
-            //           child: Row(children: [
-            //             Padding(
-            //               padding: const EdgeInsets.only(right: 20),
-            //               child: Image(
-            //                 image: AssetImage('images/products.png'),
-            //                 width: 100,
-            //                 height: 100,
-            //               ),
-            //             ),
-            //             Padding(
-            //               padding: const EdgeInsets.only(left: 20),
-            //               child: Column(
-            //                 crossAxisAlignment: CrossAxisAlignment.start,
-            //                 children: [
-            //                   Text(
-            //                     "${_listaAnuncios[index].title}",
-            //                     style: TextStyle(
-            //                       fontSize: 16,
-            //                       fontWeight: FontWeight.bold,
-            //                     ),
-            //                   ),
-            //                   Text("${_listaAnuncios[index].description}"),
-            //                   Text(
-            //                     "RS ${_listaAnuncios[index].price}",
-            //                     style: TextStyle(
-            //                         fontSize: 20,
-            //                         color: Colors.deepOrange,
-            //                         fontWeight: FontWeight.bold),
-            //                   ),
-            //                   Container(
-            //                     alignment: Alignment.bottomLeft,
-            //                     padding: EdgeInsets.only(left: 50, top: 20),
-            //                     child: OutlinedButton.icon(
-            //                       icon: Icon(
-            //                         Icons.shopping_cart,
-            //                         color: Colors.white,
-            //                       ),
-            //                       style: OutlinedButton.styleFrom(
-            //                           minimumSize: const Size(0, 35),
-            //                           backgroundColor: Colors.deepOrange),
-            //                       onPressed: () {},
-            //                       label: Text(
-            //                         "COMPRAR",
-            //                         style: const TextStyle(
-            //                             fontWeight: FontWeight.bold,
-            //                             color: Colors.white,
-            //                             fontSize: 14),
-            //                       ),
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //           ]),
-            //         );
-            //       }),
-            // ),
           ],
         ),
       ),

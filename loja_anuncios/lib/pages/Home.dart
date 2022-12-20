@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:loja_anuncios/model/user.dart';
 import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/cadastro_user.dart';
+import 'package:loja_anuncios/pages/page_anuncios_convidado.dart';
 import 'package:loja_anuncios/pages/page_anuncios_main.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -187,7 +188,7 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Cadastro(),
+                          builder: (context) => Convidado(),
                         ));
                   },
                   child: Text("Entrar como Convidado",style: TextStyle(color: Colors.black54),),
