@@ -8,6 +8,7 @@ import 'package:loja_anuncios/model/anuncio.dart';
 import 'package:loja_anuncios/pages/Home.dart';
 import 'package:loja_anuncios/pages/cadastro_user.dart';
 import 'package:loja_anuncios/pages/create_anuncio.dart';
+import 'package:loja_anuncios/pages/detailed_page.dart';
 import 'package:loja_anuncios/pages/meus_anuncios.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -55,7 +56,10 @@ class _MainPageState extends State<MainPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TelaCriacaoDeAnuncio(id: widget.id,name: widget.name,),
+                      builder: (context) => TelaCriacaoDeAnuncio(
+                        id: widget.id,
+                        name: widget.name,
+                      ),
                     ));
               } else if (title == "Logout") {
                 Navigator.push(
@@ -67,10 +71,12 @@ class _MainPageState extends State<MainPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Mine(id: widget.id,name: widget.name,),
+                      builder: (context) => Mine(
+                        id: widget.id,
+                        name: widget.name,
+                      ),
                     ));
               }
-
             },
             child: Text(title)),
       ),
@@ -89,8 +95,8 @@ class _MainPageState extends State<MainPage> {
         actions: [
           PopupMenuButton(
               itemBuilder: (ctx) => [
-                _buildPopupMenuItem(
-                    "Olá, ${widget.name}", Icon(Icons.person), context),
+                    _buildPopupMenuItem(
+                        "Olá, ${widget.name}", Icon(Icons.person), context),
                     _buildPopupMenuItem(
                         "Meus anuncios", Icon(Icons.inbox), context),
                     _buildPopupMenuItem(
@@ -207,7 +213,17 @@ class _MainPageState extends State<MainPage> {
                               style: OutlinedButton.styleFrom(
                                   minimumSize: const Size(150, 30),
                                   backgroundColor: Colors.deepOrange),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Detail(
+                                        id: widget.id,
+                                        name: widget.name,
+                                        productId: _listaAnuncios[index].id,
+                                      ),
+                                    ));
+                              },
                               label: Text(
                                 "COMPRAR",
                                 style: const TextStyle(
