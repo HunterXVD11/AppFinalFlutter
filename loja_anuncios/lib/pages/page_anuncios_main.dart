@@ -17,16 +17,18 @@ import 'package:path/path.dart';
 
 import '../CRUD/crud_user.dart';
 
-class Main extends StatefulWidget {
-  Main({Key? key, required this.id}) : super(key: key);
+//ignore: must_be_immutable
+class MainPage extends StatefulWidget {
+  MainPage({Key? key, required this.id, required this.name}) : super(key: key);
 
+  String name;
   int id;
 
   @override
-  State<Main> createState() => _MainState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MainState extends State<Main> {
+class _MainPageState extends State<MainPage> {
   late List<Anuncio> anuncios = [];
   late List _listaAnuncios = [];
 
@@ -53,33 +55,27 @@ class _MainState extends State<Main> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
+                      builder: (context) => TelaCriacaoDeAnuncio(id: widget.id,name: widget.name,),
                     ));
-              }else if (title == "Logout"){
+              } else if (title == "Logout") {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => Home(),
                     ));
-              }
-              else {
+              } else if (title == "Meus anuncios") {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Mine(id: widget.id),
+                      builder: (context) => Mine(id: widget.id,name: widget.name,),
                     ));
               }
+
             },
             child: Text(title)),
       ),
     );
   }
-
-  // Widget showAnuncio(BuildContext context, int index) {
-  //   return Scaffold(
-  //     body: Text(_listaAnuncios[index].title),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +89,8 @@ class _MainState extends State<Main> {
         actions: [
           PopupMenuButton(
               itemBuilder: (ctx) => [
+                _buildPopupMenuItem(
+                    "Olá, ${widget.name}", Icon(Icons.person), context),
                     _buildPopupMenuItem(
                         "Meus anuncios", Icon(Icons.inbox), context),
                     _buildPopupMenuItem(

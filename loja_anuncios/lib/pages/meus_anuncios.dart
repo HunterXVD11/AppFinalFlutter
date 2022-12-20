@@ -18,8 +18,9 @@ import 'package:path/path.dart';
 import '../CRUD/crud_user.dart';
 
 class Mine extends StatefulWidget {
-  Mine({Key? key, required this.id}) : super(key: key);
+  Mine({Key? key, required this.id,required this.name}) : super(key: key);
 
+  String name;
   int id;
 
   @override
@@ -59,7 +60,7 @@ class _MineState extends State<Mine> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => TelaCriacaoDeAnuncio(id: widget.id),
+                      builder: (context) => TelaCriacaoDeAnuncio(id: widget.id,name: widget.name,),
                     ));
               }
               else if (title == "Logout"){
@@ -69,11 +70,11 @@ class _MineState extends State<Mine> {
                       builder: (context) => Home(),
                     ));
               }
-              else {
+              else if (title == "Todos anúncios") {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Main(id: widget.id),
+                      builder: (context) => MainPage(id: widget.id,name: widget.name,),
                     ));
               }
             },
@@ -92,6 +93,8 @@ class _MineState extends State<Mine> {
         actions: [
           PopupMenuButton(
               itemBuilder: (ctx) => [
+                _buildPopupMenuItem(
+                    "Olá, ${widget.name}", Icon(Icons.person), context),
                 _buildPopupMenuItem(
                     "Todos anúncios", Icon(Icons.inbox), context),
                 _buildPopupMenuItem(

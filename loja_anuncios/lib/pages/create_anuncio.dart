@@ -15,8 +15,9 @@ import 'package:path/path.dart';
 import '../CRUD/crud_anuncio.dart';
 
 class TelaCriacaoDeAnuncio extends StatefulWidget {
-  TelaCriacaoDeAnuncio({Key? key, required this.id}) : super(key: key);
+  TelaCriacaoDeAnuncio({Key? key, required this.id,required this.name}) : super(key: key);
 
+  String name;
   int id;
   @override
   State<TelaCriacaoDeAnuncio> createState() => _TelaCriacaoDeAnuncioState();
@@ -169,10 +170,6 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
             Padding(
               padding: EdgeInsets.only(bottom: 20, left: 90, right: 90),
               child: OutlinedButton(
-                // icon: Icon(
-                //   Icons.login,
-                //   color: Colors.white,
-                // ),
                 style: OutlinedButton.styleFrom(
                     minimumSize: const Size(0, 50),
                     backgroundColor: Colors.deepOrange),
@@ -181,7 +178,7 @@ class _TelaCriacaoDeAnuncioState extends State<TelaCriacaoDeAnuncio> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Main(id: widget.id),
+                        builder: (context) => MainPage(id: widget.id,name: widget.name),
                       ));
                   print("Lista = $_listaAnuncios");
                 },

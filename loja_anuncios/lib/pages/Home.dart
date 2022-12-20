@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Main(id: _listaUsers[i].id),
+                            builder: (context) => MainPage(id: _listaUsers[i].id,name: _listaUsers[i].name,),
                           ));
                     }
                   }
